@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import Navbar from "./Navbar";
 import Feed from "./Feed";
+import Footer from "./Footer";
 
 
 function Base(){
@@ -20,6 +21,7 @@ function Base(){
             <Box bgcolor={"background.default"} color={"text.primary"}>
                 <Navbar/>
                 <Feed/>
+                <Footer/>
             </Box>
         </ThemeProvider>
     );

@@ -3,7 +3,7 @@ import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid,
 
 const Cards = () => {
   return (
-      <Grid item sm={3} xs={6}>
+      <Grid item sm={4} xs={6}>
           <Card>
               <CardActionArea>
                   <CardMedia
