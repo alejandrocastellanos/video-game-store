@@ -1,20 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     Box,
-    createTheme,
     ThemeProvider,
 } from "@mui/material";
 import Navbar from "./Navbar";
 import Feed from "./Feed";
 import Footer from "./Footer";
+import {AppContext} from "../AppContext";
 
 
 function Base(){
-    const darkTheme = createTheme({
-        palette: {
-            mode: 'dark',
-        },
-    });
+
+    let {
+        darkTheme
+    } = useContext(AppContext);
 
     return (
         <ThemeProvider theme={darkTheme}>

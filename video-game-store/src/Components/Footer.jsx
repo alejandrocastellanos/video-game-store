@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, IconButton, Link, Typography} from "@mui/material";
+import {Grid, Link, Typography} from "@mui/material";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

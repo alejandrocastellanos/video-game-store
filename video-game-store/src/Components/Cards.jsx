@@ -1,33 +1,35 @@
 import React from 'react';
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
 
-const Cards = () => {
+const Cards = ( props ) => {
   return (
       <Grid item sm={4} xs={6}>
-          <Card>
-              <CardActionArea>
-                  <CardMedia
-                      component="img"
-                      height="140"
-                      image="https://images.pexels.com/photos/371924/pexels-photo-371924.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                      alt="green iguana"
-                  />
-                  <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                          Lizard
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                          Lizards are a widespread group of squamate reptiles, with over 6,000
-                          species, ranging across all continents except Antarctica
-                      </Typography>
-                  </CardContent>
-              </CardActionArea>
-              <CardActions>
-                  <Button size="small" color="primary">
-                      Share
-                  </Button>
-              </CardActions>
-          </Card>
+          <Link to={ "/game/" + props.id } style={{ textDecoration: 'none' }}>
+              <Card>
+                  <CardActionArea>
+                      <CardMedia
+                          component="img"
+                          height="140"
+                          image={ props.image }
+                          alt="green iguana"
+                      />
+                      <CardContent>
+                          <Typography gutterBottom variant="h5" component="div">
+                              { props.title }
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" >
+                              { props.description }
+                          </Typography>
+                      </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                      <Button size="small" color="primary">
+                          Share
+                      </Button>
+                  </CardActions>
+              </Card>
+          </Link>
       </Grid>
   );
 }

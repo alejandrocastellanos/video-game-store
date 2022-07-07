@@ -15,12 +15,12 @@ const Gallery = () => {
                             alignItems: "center"
                         }}
                         className="img-responsive center-block"
-                        src="https://images.pexels.com/photos/209679/pexels-photo-209679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        src="https://wallpaperaccess.com/full/3037905.jpg"
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Valorant</h3>
+                        <p>A 5v5 character-based tactical shooter.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -31,13 +31,13 @@ const Gallery = () => {
                             alignItems: "center"
                         }}
                         className="img-responsive center-block"
-                        src="https://images.pexels.com/photos/245252/pexels-photo-245252.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                        src="https://fondosmil.com/fondo/13483.jpg"
                         alt="Second slide"
                     />
 
                     <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h3>FIFA 22</h3>
+                        <p>on PlayStation 5, Xbox Series X|S.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -48,14 +48,14 @@ const Gallery = () => {
                             alignItems: "center"
                         }}
                         className="img-responsive center-block"
-                        src="https://images.pexels.com/photos/7476606/pexels-photo-7476606.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                        src="https://fondosmil.com/fondo/26600.jpg"
                         alt="Third slide"
                     />
 
                     <Carousel.Caption>
-                        <h3>Third slide label</h3>
+                        <h3>Overwatch 2</h3>
                         <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                            free-to-play online-only multiplayer first-person shooter.
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>

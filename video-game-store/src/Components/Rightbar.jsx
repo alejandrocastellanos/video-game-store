@@ -1,29 +1,47 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
     Autocomplete,
-    FormControl, InputLabel,
     List,
     ListItemButton,
     ListItemIcon,
-    ListItemText, MenuItem, Select,
+    ListItemText,
     TextField,
     Typography
 } from "@mui/material";
-import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
-import ScreenSearchDesktopIcon from "@mui/icons-material/ScreenSearchDesktop";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import FiberNewIcon from '@mui/icons-material/FiberNew';
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
+import AbcIcon from '@mui/icons-material/Abc';
+import GradeIcon from '@mui/icons-material/Grade';
+
+import {AppContext} from "../AppContext";
 
 const Rightbar = () => {
 
-    const top100Films = [
-        { label: 'The Shawshank Redemption', year: 1994 },
-        { label: 'The Godfather', year: 1972 },
-        { label: 'The Godfather: Part II', year: 1974 },
-        { label: 'The Dark Knight', year: 2008 },
-        { label: '12 Angry Men', year: 1957 },
-        { label: "Schindler's List", year: 1993 },
-        { label: 'Pulp Fiction', year: 1994 }
-    ];
+    const {
+        tagList,
+        titleList,
+        fetchGamesByTag,
+        newTag,
+        setNewTag,
+        platform,
+        setPlatform,
+        sort,
+        setSort
+    } = useContext(AppContext);
+
+    useEffect(() => {
+        if(newTag || platform || sort){
+            filters();
+        }
+    }, [newTag, platform, sort]);
+
+    let filters = () => {
+        let filterTag = newTag ? "category="+newTag+"&" :  "";
+        let filterPlatform = platform ? "platform="+platform+"&" : "";
+        let filterSort = sort ? "sort-by="+sort+"&" : "";
+        let filter = "?" + filterTag + filterPlatform + filterSort
+        fetchGamesByTag(filter.slice(0, -1));
+    }
 
     return(
         <>
@@ -31,63 +49,84 @@ const Rightbar = () => {
                 Category
             </Typography>
             <Autocomplete
-
                 disablePortal
-                id="combo-box-demo"
-                options={top100Films}
+                id="caetgory-box"
+                options={titleList}
+                value={newTag}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="All" />}
+                renderInput={(params) => <TextField {...params} label="Search" />}
             />
             <Typography variant="h6" mb={3} mt={3}>
                 Tags
             </Typography>
             <Autocomplete
-
                 disablePortal
-                id="combo-box-demo"
-                options={top100Films}
+                id="tag-box"
+                options={tagList}
                 sx={{ width: 300 }}
+                onChange={(e, value) => {
+                    setNewTag(value);
+                }}
                 renderInput={(params) => <TextField {...params} label="All" />}
             />
             <Typography variant="h6" mb={3} mt={3}>
               Platform
             </Typography>
+            <Autocomplete
+                disablePortal
+                id="tag-box"
+                options={["PC", "Browser", "All" ]}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="All" />}
+                onChange={(e, value) => {
+                    setPlatform(value);
+                }}
+            />
+            <Typography variant="h6" mb={3} mt={3}>
+                Sort by
+            </Typography>
             <List>
-                <ListItemButton>
+                <ListItemButton
+                    onClick={() => {
+                        setSort('release-date');
+                    }}
+                >
                     <ListItemIcon>
-                        <LaptopChromebookIcon />
+                        <FiberNewIcon />
                     </ListItemIcon>
-                    <ListItemText primary="PC" />
+                    <ListItemText primary="Release date" />
                 </ListItemButton>
-                <ListItemButton>
+                <ListItemButton
+                    onClick={() => {
+                    setSort('popularity');
+                    }}
+                >
                     <ListItemIcon>
-                        <ScreenSearchDesktopIcon />
+                        <AirlineStopsIcon />
                     </ListItemIcon>
-                  <ListItemText primary="Browser" />
+                    <ListItemText primary="Popularity" />
                 </ListItemButton>
-                <ListItemButton>
+                <ListItemButton
+                    onClick={() => {
+                        setSort('alphabetical');
+                    }}
+                >
                     <ListItemIcon>
-                        <SportsEsportsIcon />
+                        <AbcIcon />
                     </ListItemIcon>
-                    <ListItemText primary="All" />
+                    <ListItemText primary="Alphabetical" />
+                </ListItemButton>
+                <ListItemButton
+                    onClick={() => {
+                        setSort('relevance');
+                    }}
+                >
+                    <ListItemIcon>
+                        <GradeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Relevance" />
                 </ListItemButton>
             </List>
-            <Typography variant="h6" mb={3} mt={3}>
-                Sort games
-            </Typography>
-            <FormControl sx={{ width: 300 }}>
-                <InputLabel id="demo-simple-select-label">By</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value="age"
-                    label="Age"
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
         </>
     )
 }
