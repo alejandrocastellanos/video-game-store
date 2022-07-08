@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {Breadcrumbs, Container, Divider, Grid, Typography} from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 import Cards from "./Cards";
 import Gallery from "./Gallery";
 import Rightbar from "./Rightbar";
@@ -9,27 +10,44 @@ import {AppContext} from "../AppContext";
 const Feed = () => {
 
     const {
-        gameList,
         filterGames,
         newTag,
         platform,
-        sort
+        sort,
+        loading
     } = useContext(AppContext);
-
-    let list = [];
-
-    if (filterGames.length){
-        list = filterGames;
-    }else{
-        list = gameList;
-    }
 
     return (
         <>
             <Container>
                 <Grid container spacing={3}>
                     <Grid item sm={8} xs={8}>
-                        <Gallery/>
+                        {
+                            loading ?
+                                <div className="d-flex justify-content-center" style={{ fontFamily: "arial",
+                                    fontSize: "24px",
+                                    margin: "25px",
+                                    width: "800px",
+                                    height: "400px",
+                                    position: "relative"
+                                }}>
+                                    <CircularProgress
+                                        disableShrink
+                                        color="secondary"
+                                        sx={{
+                                            width: "50px",
+                                            height: "50px",
+                                            position: "absolute",
+                                            top: "50%",
+                                            left: "50%",
+                                            margin: "-25px 0 0 -25px",
+                                        }}
+                                        size={50}
+                                    />
+                                </div>
+                                :
+                                <Gallery/>
+                        }
                     </Grid>
                     <Grid item sm={4} xs={4} mt={4}>
                         <BestGames/>
@@ -64,7 +82,7 @@ const Feed = () => {
                         </Breadcrumbs>
                         <Grid container spacing={3} mt={1}>
                             {
-                                list.map((game) =>{
+                                filterGames.map((game) =>{
                                     return (
                                         <Cards id={ game.id } image={ game.thumbnail } title={ game.title } description={ game.short_description } />
                                     );

@@ -16,7 +16,7 @@ const TopGames = () => {
 
     let {
         fetchTopGames,
-        gameList
+        filterGames
     } = useContext(AppContext);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const TopGames = () => {
                                   </Typography>
                                   <Grid container spacing={3} mt={1}>
                                       {
-                                          gameList.map((game) =>{
+                                          filterGames.map((game) =>{
                                               return (
                                                   <Cards id={ game.id } image={ game.thumbnail } title={ game.title } description={ game.short_description } />
                                               );

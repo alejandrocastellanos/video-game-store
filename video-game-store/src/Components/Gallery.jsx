@@ -6,7 +6,7 @@ const Gallery = () => {
 
     return (
         <div style={{ display: 'block', width: 800, padding: 30, margin: "auto" }}>
-            <Carousel style={{ marginTop: "20px", background:"red"}}>
+            <Carousel>
                 <Carousel.Item>
                     <img
                         style={{

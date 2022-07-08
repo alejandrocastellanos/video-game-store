@@ -26,14 +26,20 @@ const Rightbar = () => {
         platform,
         setPlatform,
         sort,
-        setSort
+        setSort,
+        setGameId,
+        gameId,
+        fetchNameGame
     } = useContext(AppContext);
 
     useEffect(() => {
-        if(newTag || platform || sort){
+        if(gameId){
+            searchGameByName();
+        }else if(newTag || platform || sort){
             filters();
         }
-    }, [newTag, platform, sort]);
+
+    }, [newTag, platform, sort, gameId]);
 
     let filters = () => {
         let filterTag = newTag ? "category="+newTag+"&" :  "";
@@ -41,6 +47,10 @@ const Rightbar = () => {
         let filterSort = sort ? "sort-by="+sort+"&" : "";
         let filter = "?" + filterTag + filterPlatform + filterSort
         fetchGamesByTag(filter.slice(0, -1));
+    }
+
+    let searchGameByName = () => {
+        fetchNameGame();
     }
 
     return(
@@ -52,9 +62,12 @@ const Rightbar = () => {
                 disablePortal
                 id="caetgory-box"
                 options={titleList}
-                value={newTag}
+                value={gameId}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Search" />}
+                onChange={(e, value) => {
+                    setGameId(value);
+                }}
             />
             <Typography variant="h6" mb={3} mt={3}>
                 Tags
@@ -75,7 +88,7 @@ const Rightbar = () => {
             <Autocomplete
                 disablePortal
                 id="tag-box"
-                options={["PC", "Browser", "All" ]}
+                options={["pc", "browser", "all" ]}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="All" />}
                 onChange={(e, value) => {

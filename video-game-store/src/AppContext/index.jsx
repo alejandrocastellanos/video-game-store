@@ -14,20 +14,25 @@ function AppProvider(props) {
         }
     };
 
+    const [loading, setLoading] = useState(false);
     const [gameList, setGameList] = useState([]);
     const [gameDetails, setGameDetails] = useState({});
     const [filterGames, setFilterGames] = useState([]);
     const [newTag, setNewTag] = useState('');
     const [platform, setPlatform] = useState('');
     const [sort, setSort] = useState('');
+    const [gameId, setGameId] = useState('');
 
 
     const fetchAllGames = () => {
+        setLoading(true);
         fetch(url, options)
             .then(response => response.json())
             .then(
                 response => {
                     setGameList(response);
+                    setFilterGames(response);
+                    setLoading(false);
                 }
             )
             .catch(
@@ -41,6 +46,7 @@ function AppProvider(props) {
 
     function fetchGame(id) {
         setGameDetails({});
+        setLoading(true);
         const urlGameId = "https://free-to-play-games-database.p.rapidapi.com/api/game?id="+id;
         fetch(urlGameId, options)
             .then(response => response.json()
@@ -48,6 +54,7 @@ function AppProvider(props) {
             .then(
                 response => {
                     setGameDetails(response);
+                    setLoading(false);
                 }
             )
             .catch(
@@ -69,16 +76,27 @@ function AppProvider(props) {
     }
 
     const fetchGamesByTag = (filter) => {
+        console.log(url+filter);
         fetch(url+filter, options)
             .then(response => response.json())
             .then(
                 response => {
                     setFilterGames(response);
+                    console.log(response);
                 }
             )
             .catch(
                 err => console.error(err)
             );
+    }
+
+    const fetchNameGame = () => {
+        console.log('gameId', gameId);
+
+        if(gameId) {
+            let game = gameList.find(({title}) => title === gameId);
+            setFilterGames([game]);
+        }
     }
 
 
@@ -154,7 +172,11 @@ function AppProvider(props) {
             setPlatform,
             sort,
             setSort,
-            darkTheme
+            darkTheme,
+            setGameId,
+            gameId,
+            fetchNameGame,
+            loading
         }}>
             {props.children}
         </AppContext.Provider>
