@@ -10,15 +10,15 @@ const Cards = ( props ) => {
                   <CardActionArea>
                       <CardMedia
                           component="img"
-                          height="140"
+                          height="170"
                           image={ props.image }
                           alt="green iguana"
                       />
-                      <CardContent>
+                      <CardContent sx={{ display: { xs: "none", sm: "block"}}}>
                           <Typography gutterBottom variant="h5" component="div">
                               { props.title }
                           </Typography>
-                          <Typography variant="body2" color="text.secondary" >
+                          <Typography variant="body2" color="text.secondary">
                               { props.description }
                           </Typography>
                       </CardContent>

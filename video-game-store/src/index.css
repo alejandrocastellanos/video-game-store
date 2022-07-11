@@ -1,3 +1,15 @@
 .carousel-inner > .item > img {
     margin: 0 auto;
 }
+
+.inner {
+    margin-top: 10%;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.inner-image {
+    width: 100%;
+    margin-top: 1%;
+    padding: 0 1px;
+}

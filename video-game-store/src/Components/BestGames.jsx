@@ -3,9 +3,13 @@ import {Box, Card, CardContent, CardMedia, Rating, Typography} from "@mui/materi
 
 
 const BestGames = () => {
+
     return(
         <>
-            <Typography variant="h6">
+            <Typography variant="h5" sx={{
+                display: "flex",
+                justifyContent: "center"
+            }}>
                 Best Games
             </Typography>
             <Card sx={{ display: 'flex', marginTop: '10px', marginBottom: '10px' }}>

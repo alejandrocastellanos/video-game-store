@@ -46,7 +46,6 @@ function AppProvider(props) {
 
     function fetchGame(id) {
         setGameDetails({});
-        setLoading(true);
         const urlGameId = "https://free-to-play-games-database.p.rapidapi.com/api/game?id="+id;
         fetch(urlGameId, options)
             .then(response => response.json()
@@ -54,7 +53,6 @@ function AppProvider(props) {
             .then(
                 response => {
                     setGameDetails(response);
-                    setLoading(false);
                 }
             )
             .catch(
@@ -76,13 +74,12 @@ function AppProvider(props) {
     }
 
     const fetchGamesByTag = (filter) => {
-        console.log(url+filter);
         fetch(url+filter, options)
             .then(response => response.json())
             .then(
                 response => {
+                    console.log('entrando!!!!')
                     setFilterGames(response);
-                    console.log(response);
                 }
             )
             .catch(
@@ -91,14 +88,11 @@ function AppProvider(props) {
     }
 
     const fetchNameGame = () => {
-        console.log('gameId', gameId);
-
         if(gameId) {
             let game = gameList.find(({title}) => title === gameId);
             setFilterGames([game]);
         }
     }
-
 
     const tagList = [
         'mmorpg',
@@ -154,7 +148,28 @@ function AppProvider(props) {
         palette: {
             mode: 'dark',
         },
+        typography: {
+            textShadow: "-2px 0 yellow, 0 2px yellow, 2px 0 yellow, 0 -2px yellow",
+            fontFamily: [
+                "Jacques Francois",
+            ].join(",")
+        },
     });
+
+    const [numberOfPages, setNumberOfPages] = useState(0);
+    const [gamePagination, setGamePagination] = useState([]);
+
+    const handlePagination =  (event, pageNumber=1) => {
+        let length = 9
+        setNumberOfPages(Math.floor(filterGames.length / length));
+        let to = length * pageNumber;
+        let from = (pageNumber - 1) * length;
+        setGamePagination(filterGames.slice(from,to));
+    }
+
+    useEffect(() =>{
+        handlePagination();
+    }, [filterGames])
 
     return (
         <AppContext.Provider value={{
@@ -176,7 +191,10 @@ function AppProvider(props) {
             setGameId,
             gameId,
             fetchNameGame,
-            loading
+            loading,
+            handlePagination,
+            numberOfPages,
+            gamePagination
         }}>
             {props.children}
         </AppContext.Provider>

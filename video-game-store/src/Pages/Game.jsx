@@ -38,7 +38,10 @@ const Game = () => {
                 <Box bgcolor={"background.default"} color={"text.secondary"}>
                     <Navbar/>
                     <Container>
-                        <Typography variant="h3" component="h4" mt={2} mb={1}>
+                        <Typography variant="h3" component="h4" mt={3} mb={3} sx={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}>
                             {gameDetails.title}
                         </Typography>
                         <Grid container spacing={3}>
