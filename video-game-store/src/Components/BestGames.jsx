@@ -6,12 +6,6 @@ const BestGames = () => {
 
     return(
         <>
-            <Typography variant="h5" sx={{
-                display: "flex",
-                justifyContent: "center"
-            }}>
-                Best Games
-            </Typography>
             <Card sx={{ display: 'flex', marginTop: '10px', marginBottom: '10px' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
