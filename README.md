@@ -1,3 +1,7 @@
+# Video game Api based on [freetogame.com](https://www.freetogame.com/api-doc)
+
+More info -> [Link](https://rapidapi.com/digiwalls/api/free-to-play-games-database)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
