@@ -1,7 +1,6 @@
 {
   "name": "video-game-store",
   "version": "0.1.0",
-  "homepage": "https://alejandrocastellanos.github.io/video-game-store",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -22,8 +21,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
