@@ -9,7 +9,7 @@ import {AppProvider} from "./AppContext";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <AppProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
                 <Route path="/" element={<Base/>} />
                 <Route path="/top-games" element={<TopGames/>} />
