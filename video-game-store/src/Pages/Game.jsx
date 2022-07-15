@@ -2,7 +2,6 @@ import React, {useContext, useEffect} from 'react';
 import {
     Box, Button,
     Container, Divider,
-    Grid,
     List, ListItem, ListItemText, Rating,
     Stack,
     ThemeProvider,
@@ -30,8 +29,109 @@ const Game = () => {
         fetchGame(id);
     }, [id]);
 
-    console.log(gameDetails);
+    const Description = () => {
+        return (
+            <>
+                <div className="inner">
+                    <Carousel>
+                        { gameDetails.screenshots &&
+                            gameDetails.screenshots.map((game) =>{
+                                return (
+                                    <Carousel.Item>
+                                        <img
+                                            className="img-responsive inner-image"
+                                            src={game.image}
+                                            alt="First slide"
+                                        />
+                                    </Carousel.Item>
+                                )
+                            })
+                        }
+                    </Carousel>
+                </div>
+                <Stack mt={3} mb={2}>
+                    {gameDetails.description}
+                </Stack>
+                <Rating name="read-only" defaultValue={Math.floor(Math.random() * 5)} precision={0.5} readOnly/>
+            </>
+        )
+    }
 
+    const Details = () =>{
+        return(
+            <>
+                <img
+                    style={{
+                        height: 250,
+                        width: "100%",
+                        alignItems: "center"
+                    }}
+                    className="img-responsive center-block"
+                    src={gameDetails.thumbnail}
+                    alt="First slide"
+                />
+                <List mt={2}>
+                    <ListItem
+                        secondaryAction={
+                            gameDetails.developer
+                        }
+                    >
+                        <ListItemText primary="Developer" sx={{ color: "gray" }}/>
+                    </ListItem>
+                    <Divider light />
+                    <ListItem
+                        secondaryAction={
+                            gameDetails.genre
+                        }
+                    >
+                        <ListItemText primary="Genre" sx={{ color: "gray" }}/>
+                    </ListItem>
+                    <Divider light />
+                    <ListItem
+                        secondaryAction={
+                            gameDetails.publisher
+                        }
+                    >
+                        <ListItemText primary="Publisher" sx={{ color: "gray" }}/>
+                    </ListItem>
+                    <Divider light />
+                    <ListItem
+                        secondaryAction={
+                            gameDetails.platform
+                        }
+                    >
+                        <ListItemText primary="Platform" sx={{ color: "gray" }}/>
+                    </ListItem>
+                    <Divider light />
+                    <ListItem
+                        secondaryAction={
+                            gameDetails.release_date
+                        }
+                    >
+                        <ListItemText primary="Release Date" sx={{ color: "gray" }}/>
+                    </ListItem>
+                </List>
+                <Button
+                    href={gameDetails.game_url}
+                    variant="outlined"
+                    startIcon={<AttachMoneyIcon />}
+                    target="_blank"
+                    size="large"
+                    color="success"
+                    sx={{ width:"100%" }}
+                >
+                    Buy
+                </Button>
+                <Button
+                    startIcon={<OnlinePredictionIcon />}
+                    size="large"
+                    disabled
+                >
+                    {gameDetails.status}
+                </Button>
+            </>
+        )
+    }
     return(
         <>
             <ThemeProvider theme={darkTheme}>
@@ -39,112 +139,35 @@ const Game = () => {
                     <Navbar/>
                     <Container>
                         <Typography variant="h3" component="h4" mt={3} mb={3} sx={{
-                            display: "flex",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            fontSize: {
+                                lg: 35,
+                                md: 35,
+                                sm: 20,
+                                xs: 20
+                            },
+                            display: "flex"
                         }}>
                             {gameDetails.title}
                         </Typography>
-                        <Grid container spacing={3}>
-                            <Grid item sm={8} xs={8}>
-                                <div style={{ display: 'block', width: "100%", margin: "auto" }}>
-                                    <Carousel>
-                                        { gameDetails.screenshots &&
-                                            gameDetails.screenshots.map((game) =>{
-                                                return (
-                                                    <Carousel.Item>
-                                                        <img
-                                                            style={{
-                                                                height: 500,
-                                                                width: "100%",
-                                                                alignItems: "center"
-                                                            }}
-                                                            className="img-responsive center-block"
-                                                            src={game.image}
-                                                            alt="First slide"
-                                                        />
-                                                    </Carousel.Item>
-                                                )
-                                            })
-                                        }
-                                    </Carousel>
-                                </div>
-                                <Stack mt={3} mb={2}>
-                                    {gameDetails.description}
-                                </Stack>
-                                <Rating name="read-only" defaultValue={Math.floor(Math.random() * 5)} precision={0.5} readOnly/>
-                            </Grid>
-                            <Grid item sm={4} xs={4}>
-                                <img
-                                    style={{
-                                        height: 250,
-                                        width: "100%",
-                                        alignItems: "center"
-                                    }}
-                                    className="img-responsive center-block"
-                                    src={gameDetails.thumbnail}
-                                    alt="First slide"
-                                />
-                                <List mt={2}>
-                                    <ListItem
-                                        secondaryAction={
-                                            gameDetails.developer
-                                        }
-                                    >
-                                        <ListItemText primary="Developer" sx={{ color: "gray" }}/>
-                                    </ListItem>
-                                    <Divider light />
-                                    <ListItem
-                                        secondaryAction={
-                                            gameDetails.genre
-                                        }
-                                    >
-                                        <ListItemText primary="Genre" sx={{ color: "gray" }}/>
-                                    </ListItem>
-                                    <Divider light />
-                                    <ListItem
-                                        secondaryAction={
-                                            gameDetails.publisher
-                                        }
-                                    >
-                                        <ListItemText primary="Publisher" sx={{ color: "gray" }}/>
-                                    </ListItem>
-                                    <Divider light />
-                                    <ListItem
-                                        secondaryAction={
-                                            gameDetails.platform
-                                        }
-                                    >
-                                        <ListItemText primary="Platform" sx={{ color: "gray" }}/>
-                                    </ListItem>
-                                    <Divider light />
-                                    <ListItem
-                                        secondaryAction={
-                                            gameDetails.release_date
-                                        }
-                                    >
-                                        <ListItemText primary="Release Date" sx={{ color: "gray" }}/>
-                                    </ListItem>
-                                </List>
-                                <Button
-                                    href={gameDetails.game_url}
-                                    variant="outlined"
-                                    startIcon={<AttachMoneyIcon />}
-                                    target="_blank"
-                                    size="large"
-                                    color="success"
-                                    sx={{ width:"100%" }}
-                                >
-                                    Buy
-                                </Button>
-                                <Button
-                                    startIcon={<OnlinePredictionIcon />}
-                                    size="large"
-                                    disabled
-                                >
-                                    {gameDetails.status}
-                                </Button>
-                            </Grid>
-                        </Grid>
+                        <Stack direction="row" justifyContent="space-between"
+                               sx={{ display: { xs: "block", sm: "block", md: "none"}}}>
+                            <Box flex={4} p={2}>
+                                <Details/>
+                            </Box>
+                        </Stack>
+                        <Stack direction="row" justifyContent="space-between">
+                            <Box flex={4} p={2}>
+                                <Description/>
+                            </Box>
+                            <Box
+                                flex={2}
+                                p={2}
+                                sx={{ display: { xs: "none", sm: "none", md: "block"}}}
+                            >
+                                <Details/>
+                            </Box>
+                        </Stack>
                     </Container>
                     <Footer/>
                 </Box>

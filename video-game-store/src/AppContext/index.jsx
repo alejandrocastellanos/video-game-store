@@ -153,7 +153,7 @@ function AppProvider(props) {
             fontFamily: [
                 "Jacques Francois",
             ].join(",")
-        },
+        }
     });
 
     const [numberOfPages, setNumberOfPages] = useState(0);
