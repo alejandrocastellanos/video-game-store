@@ -2,6 +2,18 @@
 
 More info -> [Link](https://rapidapi.com/digiwalls/api/free-to-play-games-database)
 
+
+# Images
+
+Main page
+![Form](main.png "Main")
+
+Game
+![Form](game.png "Game")
+
+Mobile
+![Form](phone.png "Mobile")
+
 Github Pages -> [Link](https://alejandrocastellanos.github.io/video-game-store/)
 # Getting Started with Create React App
 
