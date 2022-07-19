@@ -1,5 +1,7 @@
 # Video game Api based on [freetogame.com](https://www.freetogame.com/api-doc)
 
+Github Pages -> [Link](https://alejandrocastellanos.github.io/video-game-store/)
+
 More info -> [Link](https://rapidapi.com/digiwalls/api/free-to-play-games-database)
 
 
@@ -14,7 +16,6 @@ Game
 Mobile
 ![Form](phone.png "Mobile")
 
-Github Pages -> [Link](https://alejandrocastellanos.github.io/video-game-store/)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
